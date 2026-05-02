@@ -26,7 +26,7 @@ app.mount("/static", StaticFiles(directory=static_dir), name="static")
 # Load Model
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.h5")
 try:
-    model = tf.keras.models.load_model(MODEL_PATH)
+    model = tf.keras.models.load_model(MODEL_PATH, compile=False)
     print("Model loaded successfully.")
 except Exception as e:
     print(f"Error loading model: {e}")
