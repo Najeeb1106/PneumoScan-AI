@@ -23,12 +23,28 @@ app.add_middleware(
 static_dir = os.path.join(os.path.dirname(__file__), "static")
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
-# Load Model
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.keras")
+# Manual Model Architecture Reconstruction
+def create_model():
+    model = keras.Sequential([
+        keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
+        keras.layers.MaxPooling2D(2, 2),
+        keras.layers.Conv2D(64, (3, 3), activation='relu'),
+        keras.layers.MaxPooling2D(2, 2),
+        keras.layers.Conv2D(128, (3, 3), activation='relu'),
+        keras.layers.MaxPooling2D(2, 2),
+        keras.layers.Flatten(),
+        keras.layers.Dense(128, activation='relu'),
+        keras.layers.Dropout(0.5),
+        keras.layers.Dense(1, activation='sigmoid')
+    ])
+    return model
+
+WEIGHTS_PATH = os.path.join(os.path.dirname(__file__), "model", "weights.weights.h5")
 load_error = None
 try:
-    model = keras.models.load_model(MODEL_PATH, compile=False)
-    print("Model loaded successfully.")
+    model = create_model()
+    model.load_weights(WEIGHTS_PATH)
+    print("Model and weights loaded successfully.")
 except Exception as e:
     load_error = str(e)
     print(f"Error loading model: {load_error}")
