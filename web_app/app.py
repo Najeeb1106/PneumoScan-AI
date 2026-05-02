@@ -25,11 +25,13 @@ app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # Load Model
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.h5")
+load_error = None
 try:
     model = tf.keras.models.load_model(MODEL_PATH, compile=False)
     print("Model loaded successfully.")
 except Exception as e:
-    print(f"Error loading model: {e}")
+    load_error = str(e)
+    print(f"Error loading model: {load_error}")
     model = None
 
 def preprocess_image(image_bytes):
@@ -69,7 +71,7 @@ async def read_about():
 @app.post("/api/predict")
 async def predict(file: UploadFile = File(...)):
     if model is None:
-        return {"error": "Model not loaded on server."}
+        return {"error": f"Model not loaded on server. Details: {load_error}"}
     
     try:
         contents = await file.read()
