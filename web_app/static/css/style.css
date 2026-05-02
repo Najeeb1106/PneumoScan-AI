@@ -487,15 +487,33 @@ h1, h2, h3, h4, h5, h6, .logo-text {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+  /* Dashboard layout */
   .simple-dashboard {
     grid-template-columns: 1fr;
     padding: 0 1rem 2rem 1rem;
   }
   
+  /* Navigation */
   .landing-nav {
     padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative; /* Remove fixed position on mobile to prevent overlap */
   }
   
+  .landing-nav > div {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem !important;
+  }
+  
+  .landing-nav .btn {
+    width: 100%;
+    margin-left: 0 !important;
+    justify-content: center;
+  }
+
+  /* Typography */
   .hero-title {
     font-size: 2.5rem;
   }
@@ -504,7 +522,17 @@ h1, h2, h3, h4, h5, h6, .logo-text {
     font-size: 1rem;
   }
   
-  main[style*="padding-top: 6rem;"] {
-    padding-top: 5rem !important;
+  /* Generic main padding adjustment */
+  main {
+    padding-top: 3rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* How it works cards override inline styles */
+  .bento-card[style*="flex"] {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 1rem !important;
   }
 }
