@@ -5,7 +5,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-import tensorflow as tf
+import keras
 from PIL import Image
 
 app = FastAPI(title="PneumoScan AI API")
@@ -27,7 +27,7 @@ app.mount("/static", StaticFiles(directory=static_dir), name="static")
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.keras")
 load_error = None
 try:
-    model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+    model = keras.models.load_model(MODEL_PATH, compile=False)
     print("Model loaded successfully.")
 except Exception as e:
     load_error = str(e)
