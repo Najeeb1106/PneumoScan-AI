@@ -24,7 +24,7 @@ static_dir = os.path.join(os.path.dirname(__file__), "static")
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 # Load Model
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.h5")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.keras")
 load_error = None
 try:
     model = tf.keras.models.load_model(MODEL_PATH, compile=False)
