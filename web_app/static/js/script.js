@@ -7,6 +7,7 @@ const initialState = document.getElementById('initial-state');
 const resultsDisplay = document.getElementById('results-display');
 const resultBadge = document.getElementById('result-badge');
 const predictionText = document.getElementById('prediction-text');
+const confidenceText = document.getElementById('confidence-text');
 
 let probabilityChart = null;
 
@@ -98,6 +99,7 @@ function displayResults(data) {
     
     const confVal = parseFloat(data.confidence);
     predictionText.textContent = data.prediction;
+    confidenceText.textContent = `Confidence: ${data.confidence}`;
     predictionText.className = 'prediction-title';
     resultBadge.className = 'prediction-badge';
 
