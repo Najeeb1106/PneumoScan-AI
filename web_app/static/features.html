@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | PneumoScan AI</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="landing-body">
+    
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <a href="/" class="brand">
+            <i class="fa-solid fa-lungs"></i>
+            <span class="logo-text">PneumoScan</span>
+        </a>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+            <a href="/" style="color: var(--text-primary); text-decoration: none;">Home</a>
+            <a href="/features" style="color: var(--accent-primary); text-decoration: none;">Features</a>
+            <a href="/how-it-works" style="color: var(--text-primary); text-decoration: none;">How it Works</a>
+            <a href="/about" style="color: var(--text-primary); text-decoration: none;">About</a>
+            <a href="/dashboard" class="btn btn-primary" style="margin-left: 1rem;">
+                Dashboard <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Features Section -->
+    <main style="padding: 8rem 2rem 4rem 2rem; max-width: 1200px; margin: 0 auto; flex: 1;">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; color: var(--text-primary);">System Features</h1>
+            <p style="font-size: 1.2rem; color: var(--text-secondary);">Discover the capabilities of our AI diagnostic engine.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            
+            <div class="bento-card">
+                <i class="fa-solid fa-bolt" style="font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.5rem;">Real-time Analysis</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Our FastAPI backend ensures that image inference takes only milliseconds, allowing for immediate feedback in critical scenarios.</p>
+            </div>
+            
+            <div class="bento-card">
+                <i class="fa-solid fa-chart-pie" style="font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.5rem;">Visual Analytics</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Interactive data visualizations using Chart.js to help medical practitioners easily understand the model's confidence distribution.</p>
+            </div>
+
+            <div class="bento-card">
+                <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.5rem;">High Sensitivity</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Engineered with a strong bias towards recall (98%), ensuring that potentially hazardous opacities are flagged reliably.</p>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-light); color: var(--text-tertiary);">
+        <p>&copy; 2026 PneumoScan AI. Open Source Project.</p>
+    </footer>
+
+</body>
+</html>

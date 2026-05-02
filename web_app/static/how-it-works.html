@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works | PneumoScan AI</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="landing-body">
+    
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <a href="/" class="brand">
+            <i class="fa-solid fa-lungs"></i>
+            <span class="logo-text">PneumoScan</span>
+        </a>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+            <a href="/" style="color: var(--text-primary); text-decoration: none;">Home</a>
+            <a href="/features" style="color: var(--text-primary); text-decoration: none;">Features</a>
+            <a href="/how-it-works" style="color: var(--accent-primary); text-decoration: none;">How it Works</a>
+            <a href="/about" style="color: var(--text-primary); text-decoration: none;">About</a>
+            <a href="/dashboard" class="btn btn-primary" style="margin-left: 1rem;">
+                Dashboard <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- How It Works Section -->
+    <main style="padding: 8rem 2rem 4rem 2rem; max-width: 1000px; margin: 0 auto; flex: 1;">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; color: var(--text-primary);">How It Works</h1>
+            <p style="font-size: 1.2rem; color: var(--text-secondary);">A simple 3-step process from upload to diagnosis.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 3rem;">
+            
+            <div class="bento-card" style="display: flex; gap: 2rem; align-items: center;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); color: var(--accent-primary); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; flex-shrink: 0;">1</div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.5rem;">Upload Image</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Navigate to the secure dashboard and upload a standard JPEG or PNG format chest radiograph. Ensure the image is clear and well-lit.</p>
+                </div>
+            </div>
+
+            <div class="bento-card" style="display: flex; gap: 2rem; align-items: center;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); color: var(--accent-primary); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; flex-shrink: 0;">2</div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.5rem;">Tensor Processing</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">The uploaded image is automatically resized to exactly 150x150 pixels, normalized, and transformed into a tensor. This is then fed into our trained Convolutional Neural Network (CNN) architecture.</p>
+                </div>
+            </div>
+
+            <div class="bento-card" style="display: flex; gap: 2rem; align-items: center;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; background: rgba(59, 130, 246, 0.2); color: var(--accent-primary); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: bold; flex-shrink: 0;">3</div>
+                <div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.5rem;">View Results</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Within milliseconds, receive a definitive classification (Pneumonia vs. Normal) alongside an interactive probability graph demonstrating the model's confidence.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-light); color: var(--text-tertiary);">
+        <p>&copy; 2026 PneumoScan AI. Open Source Project.</p>
+    </footer>
+
+</body>
+</html>

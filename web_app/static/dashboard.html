@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | PneumoScan AI</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Specific overrides for simple dashboard */
+        .simple-dashboard {
+            max-width: 1000px;
+            margin: 4rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+        @media (max-width: 768px) {
+            .simple-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="landing-body">
+    
+    <!-- Top Navigation -->
+    <nav class="landing-nav">
+        <a href="/" class="brand">
+            <i class="fa-solid fa-lungs"></i>
+            <span class="logo-text">PneumoScan</span>
+        </a>
+        <div>
+            <a href="/" class="btn btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Workspace -->
+    <main style="padding-top: 5rem;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Diagnostic Dashboard</h1>
+            <p style="color: var(--text-secondary);">Upload a chest X-Ray for instant AI analysis.</p>
+        </div>
+
+        <div class="simple-dashboard">
+            
+            <!-- Upload Node -->
+            <div class="bento-card">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fa-solid fa-cloud-arrow-up"></i> Upload X-Ray</h3>
+                </div>
+                
+                <div class="upload-zone" id="drop-zone" style="height: 300px;">
+                    <i class="fa-solid fa-image upload-icon"></i>
+                    <div class="upload-text">Drag & drop here</div>
+                    <div class="upload-subtext">JPEG or PNG</div>
+                    <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="document.getElementById('file-input').click()">
+                        Browse Files
+                    </button>
+                    <input type="file" id="file-input" accept="image/jpeg, image/png">
+                </div>
+
+                <div class="preview-container" id="preview-section" style="height: 300px;">
+                    <img src="" id="preview-img" class="image-preview" style="height: 100%;" alt="Preview">
+                </div>
+                
+                <button class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: 1rem;" onclick="resetUpload()">
+                    <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+            </div>
+
+            <!-- Analysis & Graph Node -->
+            <div class="bento-card">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fa-solid fa-microscope"></i> AI Results</h3>
+                </div>
+                
+                <div class="results-panel" style="justify-content: flex-start; padding-top: 1rem;">
+                    
+                    <div class="initial-state" id="initial-state" style="margin-top: 4rem;">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                        <div>Waiting for image...</div>
+                    </div>
+
+                    <div class="loader-wrapper" id="loader" style="margin-top: 2rem;">
+                        <div class="radar-spinner"></div>
+                        <div style="color: var(--accent-primary); font-family: monospace;">Analyzing...</div>
+                    </div>
+
+                    <div class="result-data" id="results-display" style="width: 100%;">
+                        <div id="result-badge" class="prediction-badge"></div>
+                        <h2 id="prediction-text" class="prediction-title" style="font-size: 2rem;">--</h2>
+                        
+                        <div class="chart-container" style="height: 200px; margin-top: 1rem;">
+                            <canvas id="probabilityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

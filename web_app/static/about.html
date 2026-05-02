@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | PneumoScan AI</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="landing-body">
+    
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <a href="/" class="brand">
+            <i class="fa-solid fa-lungs"></i>
+            <span class="logo-text">PneumoScan</span>
+        </a>
+        <div style="display: flex; gap: 2rem; align-items: center;">
+            <a href="/" style="color: var(--text-primary); text-decoration: none;">Home</a>
+            <a href="/features" style="color: var(--text-primary); text-decoration: none;">Features</a>
+            <a href="/how-it-works" style="color: var(--text-primary); text-decoration: none;">How it Works</a>
+            <a href="/about" style="color: var(--accent-primary); text-decoration: none;">About</a>
+            <a href="/dashboard" class="btn btn-primary" style="margin-left: 1rem;">
+                Dashboard <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <main style="padding: 8rem 2rem 4rem 2rem; max-width: 800px; margin: 0 auto; flex: 1;">
+        <div class="bento-card" style="padding: 3rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 2rem; color: var(--text-primary); text-align: center;">About the Project</h1>
+            
+            <div style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
+                <p style="margin-bottom: 1.5rem;">PneumoScan AI was developed as an advanced, end-to-end deep learning project aimed at assisting medical professionals in the rapid diagnosis of pneumonia using chest X-ray imagery.</p>
+                
+                <h3 style="color: var(--text-primary); margin: 2rem 0 1rem 0; font-size: 1.3rem;">Dataset & Architecture</h3>
+                <p style="margin-bottom: 1.5rem;">Utilizing a verified Kaggle dataset consisting of over 5,800 pediatric chest X-rays, we designed and trained a custom 3-layer Convolutional Neural Network (CNN) architecture using TensorFlow and Keras. The model incorporates techniques like MaxPooling, Dropout, and Data Augmentation to prevent overfitting and improve generalization.</p>
+                
+                <h3 style="color: var(--text-primary); margin: 2rem 0 1rem 0; font-size: 1.3rem;">The Importance of Recall</h3>
+                <p style="margin-bottom: 1.5rem;">In medical diagnostics, false negatives (failing to identify an actual disease) carry far more severe consequences than false positives. Thus, our model was strictly optimized for <strong>recall (sensitivity)</strong>. By achieving a 98% recall rate on test data, the system virtually guarantees that pathological indicators of pneumonia are flagged for review by a professional.</p>
+
+                <h3 style="color: var(--text-primary); margin: 2rem 0 1rem 0; font-size: 1.3rem;">Tech Stack</h3>
+                <ul style="list-style-position: inside; margin-bottom: 1.5rem; columns: 2;">
+                    <li><i class="fa-brands fa-python" style="color: var(--accent-primary); width: 20px;"></i> Python 3</li>
+                    <li><i class="fa-solid fa-brain" style="color: var(--accent-primary); width: 20px;"></i> TensorFlow / Keras</li>
+                    <li><i class="fa-solid fa-server" style="color: var(--accent-primary); width: 20px;"></i> FastAPI</li>
+                    <li><i class="fa-brands fa-html5" style="color: var(--accent-primary); width: 20px;"></i> HTML/CSS/JS</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-light); color: var(--text-tertiary);">
+        <p>&copy; 2026 PneumoScan AI. Open Source Project.</p>
+    </footer>
+
+</body>
+</html>

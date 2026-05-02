@@ -1,0 +1,96 @@
+import os
+import io
+import numpy as np
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+import tensorflow as tf
+from PIL import Image
+
+app = FastAPI(title="PneumoScan AI API")
+
+# Setup CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Mount static files
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+# Load Model
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "pneumonia_cnn_model.h5")
+try:
+    model = tf.keras.models.load_model(MODEL_PATH)
+    print("Model loaded successfully.")
+except Exception as e:
+    print(f"Error loading model: {e}")
+    model = None
+
+def preprocess_image(image_bytes):
+    """Preprocess the image to match model input (150x150, normalized)."""
+    img = Image.open(io.BytesIO(image_bytes)).convert('RGB')
+    img = img.resize((150, 150))
+    img_array = np.array(img)
+    img_array = img_array / 255.0  # Normalize
+    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    return img_array
+
+@app.get("/", response_class=HTMLResponse)
+async def read_home():
+    with open(os.path.join(static_dir, "index.html"), "r", encoding="utf-8") as f:
+        return f.read()
+
+@app.get("/dashboard", response_class=HTMLResponse)
+async def read_dashboard():
+    with open(os.path.join(static_dir, "dashboard.html"), "r", encoding="utf-8") as f:
+        return f.read()
+
+@app.get("/features", response_class=HTMLResponse)
+async def read_features():
+    with open(os.path.join(static_dir, "features.html"), "r", encoding="utf-8") as f:
+        return f.read()
+
+@app.get("/how-it-works", response_class=HTMLResponse)
+async def read_how_it_works():
+    with open(os.path.join(static_dir, "how-it-works.html"), "r", encoding="utf-8") as f:
+        return f.read()
+
+@app.get("/about", response_class=HTMLResponse)
+async def read_about():
+    with open(os.path.join(static_dir, "about.html"), "r", encoding="utf-8") as f:
+        return f.read()
+
+@app.post("/api/predict")
+async def predict(file: UploadFile = File(...)):
+    if model is None:
+        return {"error": "Model not loaded on server."}
+    
+    try:
+        contents = await file.read()
+        processed_image = preprocess_image(contents)
+        
+        prediction = model.predict(processed_image)
+        score = float(prediction[0][0])
+        
+        # 0 = Normal, 1 = Pneumonia (based on standard class indices from flow_from_directory)
+        # Assuming PNEUMONIA is class 1 (probability closer to 1)
+        result = "Pneumonia Detected" if score > 0.5 else "Normal (Healthy Lungs)"
+        confidence = score if score > 0.5 else (1 - score)
+        
+        return {
+            "prediction": result,
+            "confidence": f"{confidence * 100:.2f}%",
+            "raw_score": score
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=8000)

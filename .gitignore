@@ -1,0 +1,24 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Dataset (Huge, do not commit)
+Radiography/
+chest_xray/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints
+
+# OS generated files
+.DS_Store
+Thumbs.db
