@@ -474,3 +474,37 @@ h1, h2, h3, h4, h5, h6, .logo-text {
   margin-bottom: 3rem;
   line-height: 1.6;
 }
+
+/* Dashboard Layout */
+.simple-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem 2rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .simple-dashboard {
+    grid-template-columns: 1fr;
+    padding: 0 1rem 2rem 1rem;
+  }
+  
+  .landing-nav {
+    padding: 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  main[style*="padding-top: 6rem;"] {
+    padding-top: 5rem !important;
+  }
+}
